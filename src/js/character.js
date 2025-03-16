@@ -1,44 +1,40 @@
 export default class Character {
-    constructor(name, type, attack, defence){
-        if ( name.length >= 2 && name.length <= 10 ) {
-            this.name = name
-        } else {
-            throw new Error('Ошибка')
-        }
+    constructor(name, type){
         const types = [
             'Bowman',
             'Swordsman',
             'Magician',
-            'Daemon',
+            'Deamon',
             'Undead',
             'Zombie',
-        ]
-        if ( types.includes(type) ) {
-            this.type = type
-        } else {
-            throw new Error('Ошибка') 
-        }
+        ];
+        if ( name.length < 2 && name.length > 10 || types.includes(type) == false ) {
+            throw new Error('Ошибка')
+        } 
+        this.name = name;
+        this.type = type
         this.health = 100;
         this.level = 1;
-        this.attack = attack;
-        this.defence = defence;
+        this.attack = 25;
+        this.defence = 25;
     }
 
     levelUp(){
-        if (this.health > 0){
-            this.level++;
-            this.attack *= 1.2;
-            this.defence *= 1.2;
-            this.health = 100;  
-        } else {
-            throw new Error('Нельзя повысить уровень умершего')
+        if (this.health = 0){
+            throw new Error('Ошибка')
         }
+        this.level++;
+        this.attack *= 1.2;
+        this.defence *= 1.2;
+        this.health = 100;  
     }
 
     damage(points){
-        if ( this.health >= 0 ) {
+        if ( this.health < 0 ) {
+            throw new Error('Ошибка')
+        } else {
             this.health -= points * ( 1 - this.defence / 100 );
-        } else { throw new Error('Ошибка') }
+         }
     }
 }
     

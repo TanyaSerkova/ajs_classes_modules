@@ -1,11 +1,11 @@
 import Character from "../character";
 
 test('should check the class Character no name < 2', () => {
-  expect(() => new Character('a', 'Zombie')).toThrowError(new Error('Ошибка'));
+  expect(() => new Character('a', 'Zombie')).toThrow(new Error('Ошибка'));
 });
 
 test('should check the class Character no name', () => {
-  expect(() => new Character('Player', 'Man')).toThrowError(new Error('Ошибка'));
+  expect(() => new Character('Player', 'Man')).toThrow(new Error('Ошибка'));
 });
 
 test('should check the class Character no name', () => {
@@ -31,12 +31,6 @@ test('should check the class Character no name', () => {
 
 test('should levelUp the defence', () => {
   const character = new Character('Player', 'Magician');
-  character.health = 0;
-  expect(() => character.levelUp()).toThrowError(new Error('Нельзя повысить уровень умершего'));
-});
-
-test('should levelUp the defence', () => {
-  const character = new Character('Player', 'Magician');
   character.attack = 10;
   character.defence = 10;
   character.levelUp();
@@ -58,9 +52,16 @@ test('should points damage the health', () => {
   character.defence = 10;
   character.damage(50);
   expect(character.health).toBe(55);
-
   character.damage(1000)
   expect(function() {
     character.damage()
+  }).toThrow(new Error("Ошибка"));
+});
+
+test('should levelUp the defence', () => {
+  const character = new Character('Player', 'Magician');
+  character.health = 0;
+  expect(function() {
+    character.levelUp()
   }).toThrow(new Error("Ошибка"));
 });
