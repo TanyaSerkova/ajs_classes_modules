@@ -8,7 +8,7 @@ export default class Character {
             'Undead',
             'Zombie',
         ];
-        if ( name.length < 2 && name.length > 10 || types.includes(type) == false ) {
+        if ( name.length < 2 || name.length > 10 || types.includes(type) == false ) {
             throw new Error('Ошибка')
         } 
         this.name = name;
@@ -20,7 +20,7 @@ export default class Character {
     }
 
     levelUp(){
-        if (this.health = 0){
+        if (this.health === 0){
             throw new Error('Ошибка')
         }
         this.level++;
